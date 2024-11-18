@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ユーザー一覧</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ニックネーム</th>
+                <th>ルーム</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}">ID</td>
+                <td th:text="${user.name}">name</td>
+                <td>
+                    <ul th:each="room : ${user.talkRooms}">
+                        <li th:text="${room.name}"></li>
+                    </ul>
+                </td>
+                <td>
+                    <a th:href="@{/users/edit/{id}(id=${user.id})}">編集</a>
+                    <a th:href="@{/users/delete/{id}(id=${user.id})}">削除</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/users/add}">追加</a>
+    <h2>ルーム</h2>
+    <a th:href="@{/talkRooms}">ルーム一覧</a>
+    <a th:href="@{/talkRooms/add}">ルーム追加</a>
+</body>
+</html>

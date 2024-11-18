@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>トークルームの更新</h1>
+    <form th:action="@{/talkRooms/edit}" th:method="post" th:object="${talkRoom}">
+        <input type="hidden" th:field="*{id}">
+        <p>ニックネーム: <input type="text" th:field="*{name}"></p>
+        <p>ユーザー</p>
+        <div th:each="user : ${users}">
+            <input th:type="checkbox"
+                th:field="*{users}"
+                th:value="${user.id}"
+                th:checked="${#lists.contains(talkRoom.users, user)}">
+            <span th:text="${user.name}"></span>
+        </div>
+        <p><button type="submit">更新</button></p>
+    </form>
+</body>
+</html>

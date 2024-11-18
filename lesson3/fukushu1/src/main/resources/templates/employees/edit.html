@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>情報更新</h1>
+    <form th:action="@{/employees/edit}" th:method="post" th:object="${employee}">
+        <p><input type="hidden" th:field="*{id}"></p>
+        <p><input type="text" th:field="*{name}" placeholder="氏名"></p>
+        <p>企業
+            <select id="company" th:field="*{company.id}">
+                <option value="">企業を選択</option>
+                <option th:each="company : ${companies}"
+                        th:value="${company.id}"
+                        th:text="${company.name}"
+                        th:selected="${company.id == employee.company.id}">企業名</option>
+            </select>
+        </p>
+        <p><input type="submit" value="更新"></p>
+    </form>
+
+    <a th:href="@{/employees}">一覧</a>
+</body>
+</html>

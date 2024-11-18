@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>企業一覧</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>企業名</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="company : ${companies}">
+                <td th:text="${company.id}">ID</td>
+                <td th:text="${company.name}">企業名</td>
+                <td>
+                    <a th:href="@{/companies/edit/{id}(id=${company.id})}">編集</a>
+                    <a th:href="@{/companies/delete/{id}(id=${company.id})}">削除</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/companies/add}">新規登録</a>
+    <a th:href="@{/employees}">従業員一覧</a>
+</body>
+</html>
