@@ -34,7 +34,7 @@ public class AdminFileUpload {
         return "admin/upload";
     }
 
-    @PostMapping("")
+    @PostMapping
     public String fileUpload(@RequestParam("id") Long id, @RequestParam(name = "file") MultipartFile file) {
         String originalFilename = file.getOriginalFilename();
         String fileExtension = originalFilename != null ? originalFilename.substring(originalFilename.lastIndexOf(".") + 1).toLowerCase() : "";

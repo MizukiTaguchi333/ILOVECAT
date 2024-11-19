@@ -56,7 +56,6 @@ public class AdminLessonController {
     public String editForm(@PathVariable("id") Long id, Model model){
         List<Course> courses = courseService.findAllCourses();
         Lesson lesson = lessonService.findLessonById(id);
-        
         model.addAttribute("lesson", lesson);
         model.addAttribute("courses", courses);
         return "admin/lesson-edit";
